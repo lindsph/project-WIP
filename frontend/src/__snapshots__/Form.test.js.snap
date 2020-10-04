@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Form /> renders correctly with the default props 1`] = `
+<body>
+  <div>
+    <div
+      class="form-wrapper"
+    >
+      <h1
+        class="form-heading"
+      >
+        Sign in
+      </h1>
+      <h2
+        class="form-heading"
+      >
+        Already have an account? Sign in instead.
+      </h2>
+      <form>
+        <div
+          class="form-group"
+        >
+          <label
+            for="email"
+          >
+            Email Address
+          </label>
+          <input
+            aria-invalid="false"
+            id="email"
+            name="email"
+            type="text"
+          />
+        </div>
+        <div
+          class="form-group"
+        >
+          <label
+            for="password"
+          >
+            Password
+          </label>
+          <input
+            aria-invalid="false"
+            id="password"
+            name="password"
+            type="text"
+          />
+        </div>
+        <button
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</body>
+`;
