@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import styles from './Form.module.css';
 
-const Form = ({login, heading}) => {
+const Form = ({login, signup}) => {
     const { register, handleSubmit, watch, errors, reset } = useForm({
         defaultValues: {
             email: "Email",
@@ -19,6 +19,7 @@ const Form = ({login, heading}) => {
         // console.log(data);
         // returns an object with email and password as keys and the values entered into the inputs as values
 
+        // need to add logic to either signup or login..
         await login(data.email, data.password);
         reset();
     }
@@ -26,13 +27,17 @@ const Form = ({login, heading}) => {
     return (
         <div className={styles['form-wrapper']}>
             <h1 className={styles['form-heading']}>
-                Sign in
-                {/* conditionally render either "Sign in" or "Create account" */}
+                {login ? 'Sign in' : 'Create account'}
             </h1>
-            <h2 className={styles['form-heading']}>
-                Already have an account? Sign in instead.
-                {/* conditionally render "Don't have an account? Create one here." or "Already have an account? Sign in instead." */}
-            </h2>
+            {login ? (
+                <h2 className={styles['form-heading']}>
+                    Don't have an account? <Link to="/sign_up">Create one</Link> here.
+                </h2>
+            ) : (
+                <h2 className={styles['form-heading']}>
+                    Already have an account? <Link to="/sign_in">Sign in</Link> instead.
+                </h2>
+            )}
             {/* handleSubmit will validate your inputs before invoking onSubmit */}
             <form onSubmit={handleSubmit(onSubmit)}>
                 {/* register your input into the hook by invoking the register function, must have a name as a key for registration */}

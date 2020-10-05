@@ -23,6 +23,15 @@ h2 .form-heading {
     line-height: 1.333333em;
 }
 
+a {
+    color: #53C2B5;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 .form-heading {
     font-weight: 400;
     font-style: normal;

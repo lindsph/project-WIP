@@ -3,10 +3,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  NavLink
+  Link
 } from "react-router-dom";
 import axios from 'axios';
+import Navigation from './Navigation/Navigation';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
 import Form from './Form';
@@ -16,7 +16,8 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = (email, password) => {
-    // temporary measure, add to db and add as context?
+    // check if in users list
+      // use context/db later
     setIsLoading(true);
     const response = axios.get('http://localhost:5000/users')
       .then(response => {
@@ -28,23 +29,24 @@ const App = () => {
       })
   }
 
+  const handleSignUp = (email, password) => {
+    // add to users list
+  }
+
   return (
     <Router>
-      <>
-      <header>
-        <nav>
-          <NavLink to="/sign_in">Sign in</NavLink>
-        </nav>
-      </header>
+      <Navigation/>
       <Switch>
         <Route exact path="/" component={Landing}></Route>
         <Route path="/sign_in">
           <Form login={handleLogin}/>
         </Route>
+          <Route path="/sign_up">
+            <Form signup={handleSignUp} />
+          </Route>
         <Route path="/dashboard" component={Dashboard}></Route>
         <Route path="*" component={ErrorPage}></Route>
       </Switch>
-      </>
     </Router>
   );
 }
