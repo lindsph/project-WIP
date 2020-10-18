@@ -2,18 +2,21 @@ import React, {useState, useEffect} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import axios from 'axios';
 import Navigation from './Navigation/Navigation';
 import Landing from './Landing';
-import Dashboard from './Dashboard';
+import Dashboard from './Dashboard/Dashboard';
 import Form from './Form';
 import ErrorPage from './ErrorPage';
+import Backdrop from './Modal/Backdrop';
+import Modal from './Modal/Modal';
+import './App.module.css';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const handleLogin = (email, password) => {
     // check if in users list
@@ -33,21 +36,33 @@ const App = () => {
     // add to users list
   }
 
+  const toggleModal = () => {
+    // check accessibility too!
+    setModalIsOpen(prevState => !prevState);
+  }
+
   return (
+    <>
     <Router>
       <Navigation/>
-      <Switch>
-        <Route exact path="/" component={Landing}></Route>
-        <Route path="/sign_in">
-          <Form login={handleLogin}/>
-        </Route>
-          <Route path="/sign_up">
-            <Form signup={handleSignUp} />
+      <main>
+        <Switch>
+          <Route exact path="/" component={Landing}></Route>
+          <Route path="/sign_in">
+            <Form login={handleLogin}/>
           </Route>
-        <Route path="/dashboard" component={Dashboard}></Route>
-        <Route path="*" component={ErrorPage}></Route>
-      </Switch>
+            <Route path="/sign_up">
+              <Form signup={handleSignUp} />
+            </Route>
+          <Route path="/dashboard" component={Dashboard}></Route>
+          <Route path="*" component={ErrorPage}></Route>
+        </Switch>
+      </main>
     </Router>
+    <button onClick={toggleModal}>modal button (temporary)</button>
+    <Backdrop isOpen={modalIsOpen} onClick={toggleModal}/>
+    <Modal isOpen={modalIsOpen} onClose={toggleModal}/>
+    </>
   );
 }
 

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import styles from './Form.module.css';
 
@@ -20,7 +20,8 @@ const Form = ({login, signup}) => {
         // returns an object with email and password as keys and the values entered into the inputs as values
 
         // need to add logic to either signup or login..
-        await login(data.email, data.password);
+        // await login(data.email, data.password);
+        await signup(data.email, data.password);
         reset();
     }
 
