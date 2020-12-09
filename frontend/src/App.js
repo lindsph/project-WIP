@@ -14,9 +14,12 @@ import Backdrop from './Modal/Backdrop';
 import Modal from './Modal/Modal';
 import './App.module.css';
 
+import StocksList from './Dashboard/Stocks/StocksList';
+
 const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
 
   const handleLogin = (email, password) => {
     // check if in users list
@@ -45,6 +48,7 @@ const App = () => {
     <>
     <Router>
       <Navigation/>
+      <Route path="/:userId/stocks"><StocksList/></Route>
       <main>
         <Switch>
           <Route exact path="/" component={Landing}></Route>
