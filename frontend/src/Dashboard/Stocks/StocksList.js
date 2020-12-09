@@ -15,7 +15,7 @@ const Stocks = () => {
     //     params: { symbol: 'AMRN', region: 'US' },
     //     headers: {
     //         'x-rapidapi-host': 'apidojo-yahoo-finance-v1.p.rapidapi.com',
-    //         'x-rapidapi-key': '2e068e5277msh7278e3bb160953cp18d28ejsn0bb8d22bdf28'
+    //         'x-rapidapi-key': REACT_APP_STOCK_API_KEY
     //     }
     // };
 
